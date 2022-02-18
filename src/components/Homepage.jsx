@@ -1,6 +1,6 @@
 import React from 'react';
 import millify from 'millify';
-import { Typography, Row, Col, Statistic } from 'antd';
+import { Typography, Row, Col, Statistic, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
@@ -28,13 +28,17 @@ const Homepage = () => {
 
       <div className='home-heading-container'>
         <Title level={2} className='home-title'>Top 10 Cryptocurrencies in the World</Title>
-        <Title level={3} className='show-more'><Link to="/cryptocurrencies">Show More</Link></Title>
+        <Button className='show-more' type="primary" shape="round" size='large'>
+          <Link to="/cryptocurrencies">Show More</Link>
+        </Button>
       </div>
       <Cryptocurrencies simplified />
 
       <div className='home-heading-container'>
         <Title level={2} className='home-title'>Latest Crypto News</Title>
-        <Title level={3} className='show-more'><Link to="/news">Show More</Link></Title>
+        <Button className='show-more' type="primary" shape="round" size='large'>
+          <Link to="/news">Show More</Link>
+        </Button>
       </div>
       <News simplified />
 

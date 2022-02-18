@@ -7,6 +7,7 @@ import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCi
 
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
 import LineChart from './LineChart';
+import Loader from './Loader';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -18,7 +19,7 @@ const CryptoDetails = () => {
   const { data: coinHistory } = useGetCryptoHistoryQuery({coinId, timePeriod});
   const cryptoDetails = data?.data?.coin;
 
-  if(isFetching) return 'Loading...';
+  if (isFetching) return <Loader />;
 
   const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
@@ -97,27 +98,26 @@ const CryptoDetails = () => {
         </Col>
 
         <Col className='coin-desc-link'>
-          <Row className='coin-desc'>
-            <Title level={3} className='coin-details-heading'>
-              What is {cryptoDetails.name}
-              {HTMLReactParser(cryptoDetails.description)}
-            </Title>
-          </Row>
-          <Col className='coin-links'>
-            <Title level={3} className='coin-details-heading'>
-              {cryptoDetails.name} Links
-            </Title>
-            {cryptoDetails.links.map((link) => (
-              <Row className='coin-link' key={link.name}>
-                <Title level={5} className='link-name'>
-                  {link.type}
-                </Title>
-                <a href={link.url} target="_blank" rel='noreferrer' >
-                  {link.name}
-                </a>
-              </Row>
-            ))}
-          </Col>
+          <Title level={3} className='coin-details-heading'>
+            What is {cryptoDetails.name}              
+          </Title>
+          {HTMLReactParser(cryptoDetails.description)}
+        </Col>
+
+        <Col className='coin-links'>
+          <Title level={3} className='coin-details-heading'>
+            {cryptoDetails.name} Links
+          </Title>
+          {cryptoDetails.links.map((link) => (
+            <Row className='coin-link' key={link.name}>
+              <Title level={5} className='link-name'>
+                {link.type}
+              </Title>
+              <a href={link.url} target="_blank" rel='noreferrer' >
+                {link.name}
+              </a>
+            </Row>
+          ))}
         </Col>
       </Col>
     </Col>
