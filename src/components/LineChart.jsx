@@ -9,6 +9,7 @@ import {
     } from 'chart.js';
 
 import { Col, Row, Typography } from 'antd';
+import moment from 'moment';
 
 ChartJS.register(
     CategoryScale,
@@ -23,20 +24,30 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 
     const coinPrice = [];
     const coinTimestamp = [];
+    const coinHistoryLength = coinHistory?.data?.history?.length;
+    let timeFormat = 'll';
+    let diff = coinHistory?.data?.history[0].timestamp - coinHistory?.data?.history[coinHistoryLength-1].timestamp;
 
-    for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+    // Extracting CoinPrice Array
+    for (let i = 0; i < coinHistoryLength; i += 1) {
         coinPrice.push(coinHistory?.data?.history[i].price);
     }
-    
-    for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
-        coinTimestamp.push(new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString());
+
+    // Extracting Timestamp Array
+    if(diff < 86400)
+    {
+      timeFormat = 'LT';
+    }    
+    for (let i = 0; i < coinHistoryLength; i += 1) {
+        let currentTime = coinHistory?.data?.history[i].timestamp;
+        coinTimestamp.push(moment(currentTime*1000).format(timeFormat));
     }
 
     const data = {
-        labels: coinTimestamp,
+        labels: coinTimestamp.reverse(),
         datasets: [{
             label: 'Price In USD',
-            data: coinPrice,
+            data: coinPrice.reverse(),
             fill: false,
             backgroundColor: '#1A2980',
             borderColor: '#808080',
