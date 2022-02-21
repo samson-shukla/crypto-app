@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Header } from 'antd/lib/layout/layout';
 
 const cryptoApiHeaders = {
     'x-rapidapi-host': process.env.REACT_APP_CRYPTO_RAPIDAPI_HOST,
