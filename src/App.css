@@ -33,6 +33,7 @@ a:hover{
     display: flex;
     flex-direction: column;
 }
+
 .routes{
     padding: 20px;
 }
@@ -137,6 +138,10 @@ a:hover{
     margin: 30px;
 }
 
+.coin-detail-container >*{
+    max-width: 100% !important;
+}
+
 .coin-heading-container{
     display: flex;
     justify-content: center;
@@ -162,9 +167,13 @@ a:hover{
 .stats-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: flex-start;
     gap: 40px;
+}
+
+.stats-container >* {
+    max-width: 100%;
+    flex-grow: 1;
 }
 
 .stats-container h2{
@@ -208,9 +217,9 @@ a:hover{
 .coin-desc-link{
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    margin-top: 40px;
-    padding-top: 20px;
+    gap: 10px;
+    /* margin-top: 20px; */
+    text-align: justify;
 }
 
 .coin-desc-link h2{
@@ -232,11 +241,11 @@ a:hover{
 }
 
 .coin-desc{
-    flex: 0.5;
+    /* flex: 0.5; */
 }
 
 .coin-links{
-    flex: 0.5;
+    /* flex: 0.5; */
 }
 
 .coin-link{
@@ -262,31 +271,6 @@ a:hover{
     background-color: var(--bgSecondary);
 }
 
-@media screen and (max-width:1000px){
-    .stats-container{
-        flex-direction: column;
-    }
-    .coin-desc-link{
-        flex-direction: column;
-    }
-    .stats-container h2{
-        margin-top: 0px;
-    }
-}
-
-@media screen and (max-width: 500px){
-    .coin-links{
-        padding: 0px;
-    }
-    .coin-detail-container{
-        margin: 0;
-    }
-}
-@media screen and (max-width: 500px){
-    .heading{
-        margin-top: 20px;
-    }
-}
 
 .select-news{
     width: 180px;
@@ -297,6 +281,8 @@ a:hover{
 .news-image-container{
     display: flex !important;
     justify-content: space-between !important;
+    overflow: hidden;
+
 }
 .news-title{
 width: 70%;
@@ -367,7 +353,7 @@ width: 70%;
 }
 .select-timeperiod{
     width: 200px !important;
-    margin-top: 20px !important;
+    margin: 20px 0 !important;
 }
 
 .footer {
@@ -379,4 +365,48 @@ width: 70%;
 
 .space a{
     color: #000;
+}
+
+@media screen and (max-width:800px){
+    .stats-container{
+        flex-direction: column;
+    }
+    .coin-desc-link{
+        flex-direction: column;
+    }
+    .stats-container h2{
+        margin-top: 0px;
+    }
+
+    .coin-value-statistics{
+        width: 100%;
+    }
+    .other-stats-info{
+        width: 100%;
+    }
+    .coin-links{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .heading{
+        margin-top: 20px;
+    }
+    .select-timeperiod{
+        width: 100% !important;
+    }
+    .coin-value-statistics{
+        width: 100%;
+    }
+    .other-stats-info{
+        width: 100%;
+    }
+    .coin-links{
+        padding: 0px;
+        width: 100%;
+    }
+    .coin-detail-container{
+        margin: 0;
+    }
 }

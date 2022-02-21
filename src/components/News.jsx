@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Select, Typography, Row, Col, Avatar, Card, Input } from 'antd';
 import moment from 'moment';
 
-import { cryptoNewsApi, useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
+import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import Loader from './Loader';
 
@@ -23,7 +23,7 @@ const News = ({ simplified }) => {
         <Col span={24}>
           <Select showSearch className='select-news' placeholder='Select a Crypto' optionFilterProp='children' onChange={(value) => setNewsCategory(value)} filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
             <Option value='Cryptocurrency'>Cryptocurrency</Option>
-            {data?.data?.coins.map((coin) => <option value={coin.name}>{coin.name}</option>)}
+            {data?.data?.coins.map((coin) => <Option value={coin.name} key={coin.rank}>{coin.name}</Option>)}
           </Select>
         </Col>
       )}
@@ -46,8 +46,8 @@ const News = ({ simplified }) => {
                   </Text>
                 </div>
                 <Text>
-                    {moment(news.datePublished).startOf('ss').fromNow()}
-                  </Text>
+                  {moment(news.datePublished).startOf('ss').fromNow()}
+                </Text>
               </div>
             </a>
           </Card>

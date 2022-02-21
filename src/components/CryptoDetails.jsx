@@ -14,7 +14,7 @@ const { Option } = Select;
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const { timePeriod, setTimePeriod } = useState('7d');
+  const [ timePeriod, setTimeperiod ] = useState('7d');
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({coinId, timePeriod});
   const cryptoDetails = data?.data?.coin;
@@ -50,7 +50,8 @@ const CryptoDetails = () => {
           View value Statistics, Market Cap and Supply.
         </p>
       </Col>
-      <Select defaultValue="7d" className="select-timeperiod" placeholder="Select Time Period" onChange={(value) => setTimePeriod(value)}>
+
+      <Select defaultValue="7d" className="select-timeperiod" placeholder="Select Time Period" onChange={(value) => setTimeperiod(value)}>
         {time.map((date) => <Option key={date}>{date}</Option>)}
       </Select>
 
@@ -67,7 +68,7 @@ const CryptoDetails = () => {
             </p>
           </Col>
           {stats.map(({ icon, title, value }) => (
-            <Col className='coin-stats'>
+            <Col className='coin-stats' key={title}>
               <Col className='coin-stats-name'>
                 <Text>{icon}</Text>
                 <Text>{title}</Text>
@@ -87,7 +88,7 @@ const CryptoDetails = () => {
             </p>
           </Col>
           {genericStats.map(({ icon, title, value }) => (
-            <Col className='coin-stats'>
+            <Col className='coin-stats' key={title}>
               <Col className='coin-stats-name'>
                 <Text>{icon}</Text>
                 <Text>{title}</Text>
@@ -95,13 +96,6 @@ const CryptoDetails = () => {
               <Text className='stats'>{value}</Text>
             </Col>
           ))}
-        </Col>
-
-        <Col className='coin-desc-link'>
-          <Title level={3} className='coin-details-heading'>
-            What is {cryptoDetails.name}              
-          </Title>
-          {HTMLReactParser(cryptoDetails.description)}
         </Col>
 
         <Col className='coin-links'>
@@ -119,9 +113,17 @@ const CryptoDetails = () => {
             </Row>
           ))}
         </Col>
+
+        <Col className='coin-desc-link'>
+          <Title level={3} className='coin-details-heading'>
+            What is {cryptoDetails.name}              
+          </Title>
+          {HTMLReactParser(cryptoDetails.description)}
+        </Col>
+        
       </Col>
     </Col>
   )
 }
 
-export default CryptoDetails
+export default CryptoDetails;
