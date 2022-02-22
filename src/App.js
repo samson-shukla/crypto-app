@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import { Layout, Typography, Space } from 'antd';
+import { Layout, Typography, Space, BackTop } from 'antd';
 
 import { Navbar, Homepage, Cryptocurrencies, News, CryptoDetails } from './components';
 import './App.css';
@@ -12,6 +12,7 @@ const App = () => {
             <Navbar />
         </div>
         <div className="main">
+            <BackTop className='back-top' />
             <Layout>
                 <div className="routes">
                     <Routes>
@@ -22,13 +23,13 @@ const App = () => {
                     </Routes>
                 </div>
             </Layout>
-            <div className="footer">
+            <div className="footer" theme='dark'>
                 <Typography.Title level={5} style={{color: 'white', textAlign: 'center'}}>
-                    CryptoHub © All Rights Reserved
+                    MyCryptoHub © All Rights Reserved
                 </Typography.Title>
                 <Space className='space'>
                     <Link to='/'>Home</Link>
-                    <Link to='/exchanges'>Exchanges</Link>
+                    <Link to='/cryptocurrencies'>Cryptocurrencies</Link>
                     <Link to='/news'>News</Link>
                 </Space>
                 <Space className='space'>

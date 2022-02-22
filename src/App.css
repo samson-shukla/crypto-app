@@ -24,6 +24,11 @@ a:hover{
     background-image: linear-gradient(to bottom, #1A2980, #26D0CE);
 }
 
+.back-top{
+    background-color: var(--greenish);
+    border-radius: 20px;
+}
+
 .navbar{
     flex: 0.2;
 }
@@ -361,10 +366,15 @@ width: 70%;
     flex-direction: column;
     padding: 20px;
     align-items: center;
+    background-color: #131629;
 }
 
 .space a{
-    color: #000;
+    font-size: medium;
+}
+
+.space a:hover{
+    color: var(--bgPrimary) !important;
 }
 
 @media screen and (max-width:800px){
